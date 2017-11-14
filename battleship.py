@@ -29,11 +29,30 @@ def placement(): #  placement of the ships
 
 
 def v_or_h(): #  vertical or horizontal placement
-    pass
+    while(True):
+		user_input = input("vertical or horizontal (v,h) ? ")
+		if user_input == "v" or user_input == "h":
+			return user_input
+		else:
+			print "Invalid input. Please only enter v or h"
+
 
 
 def validate(): #  validate user ship placement( out of board, overplacement )
-    pass
+    if orientation == "v" and x+ship > 10:
+		return False
+	elif orientation == "h" and y+ship > 10:
+		return False
+	else:
+		if ori == "v":
+			for i in range(ship):
+				if board[x+i][y] != -1:
+					return False
+		elif ori == "h":
+			for i in range(ship):
+				if board[x][y+i] != -1:
+					return False
+    return True            
 
 
 def get_coor(): #  ask for coordinates
