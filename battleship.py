@@ -64,9 +64,9 @@ def v_or_h(): #  vertical or horizontal placement
 
 
 def validate(): #  validate user ship placement( out of board, overplacement )
-    if orientation == "v" and x+ship > 10:
+    if orientation == "v" and x+ship > 8:
 		return False
-	elif orientation == "h" and y+ship > 10:
+	elif orientation == "h" and y+ship > 8:
 		return False
 	else:
 		if ori == "v":
