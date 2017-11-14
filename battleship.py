@@ -4,7 +4,36 @@ def cls():
     os.system('cls' if os.name=='nt' else 'clear')
 cls()
 
+def print_board(): #  print the board
+    pass    
 
+
+def placement(): #  placement of the ships
+    pass
+
+
+def v_or_h(): #  vertical or horizontal placement
+    pass
+
+
+def validate(): #  validate user ship placement( out of board, overplacement )
+    pass
+
+
+def get_coor(): #  ask for coordinates
+    pass
+
+
+def move_check():
+    pass
+
+
+def check_sink():
+    pass
+
+    
+def main():
+    pass
 
 
 if __name__ == '__main__':
