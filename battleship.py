@@ -4,6 +4,22 @@ def cls():
     os.system('cls' if os.name=='nt' else 'clear')
 cls()
 
+def menu():
+    print("Start""\n","Exit")
+    print()
+    option = input("Press 's' to start and 'x' to exit ")
+    if option == "s":
+        print()
+        number_players = int(input("How many players will be?"))
+        players = []
+        i = 0
+        while i < number_players:
+            player_name = input("What's your name?")
+            players.append(player_name)
+            i += 1
+    elif option == "x":
+        exit()      
+
 def print_board(): #  print the board
     pass    
 
