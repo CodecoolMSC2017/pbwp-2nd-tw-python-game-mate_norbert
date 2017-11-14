@@ -20,8 +20,33 @@ def menu():
     elif option == "x":
         exit()      
 
-def print_board(): #  print the board
-    pass    
+def print_board(): #  prints the board
+    table1 = [" ", " ", " ", " ", " ", " ", " ", " "]
+    table2 = [" ", " ", " ", " ", " ", " ", " ", " "]
+    table3 = [" ", " ", " ", " ", " ", " ", " ", " "]
+    table4 = [" ", " ", " ", " ", " ", " ", " ", " "]
+    table5 = [" ", " ", " ", " ", " ", " ", " ", " "]
+    table6 = [" ", " ", " ", " ", " ", " ", " ", " "]
+    table7 = [" ", " ", " ", " ", " ", " ", " ", " "]
+    table8 = [" ", " ", " ", " ", " ", " ", " ", " "]
+    print("    A   B   C   D   E   F   G   H")
+    print("  ╔═══╦═══╦═══╦═══╦═══╦═══╦═══╦═══╗")
+    print("1 ║ %s ║ %s ║ %s ║ %s ║ %s ║ %s ║ %s ║ %s ║" % (table1[0], table1[1], table1[2],table1[3], table1[4], table1[5],table1[6], table1[7]))
+    print("  ╠═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╣")
+    print("2 ║ %s ║ %s ║ %s ║ %s ║ %s ║ %s ║ %s ║ %s ║" % (table2[0], table2[1], table2[2],table2[3], table2[4], table2[5],table2[6], table2[7]))
+    print("  ╠═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╣")
+    print("3 ║ %s ║ %s ║ %s ║ %s ║ %s ║ %s ║ %s ║ %s ║" % (table3[0], table3[1], table3[2],table3[3], table3[4], table3[5],table3[6], table3[7]))
+    print("  ╠═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╣")
+    print("4 ║ %s ║ %s ║ %s ║ %s ║ %s ║ %s ║ %s ║ %s ║" % (table4[0], table4[1], table4[2],table4[3], table4[4], table4[5],table4[6], table4[7]))
+    print("  ╠═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╣")
+    print("5 ║ %s ║ %s ║ %s ║ %s ║ %s ║ %s ║ %s ║ %s ║" % (table5[0], table5[1], table5[2],table5[3], table5[4], table5[5],table5[6], table5[7]))
+    print("  ╠═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╣")
+    print("6 ║ %s ║ %s ║ %s ║ %s ║ %s ║ %s ║ %s ║ %s ║" % (table6[0], table6[1], table6[2],table6[3], table6[4], table6[5],table6[6], table6[7]))
+    print("  ╠═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╣")
+    print("7 ║ %s ║ %s ║ %s ║ %s ║ %s ║ %s ║ %s ║ %s ║" % (table7[0], table7[1], table7[2],table7[3], table7[4], table7[5],table7[6], table7[7]))
+    print("  ╠═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╣")
+    print("8 ║ %s ║ %s ║ %s ║ %s ║ %s ║ %s ║ %s ║ %s ║" % (table8[0], table8[1], table8[2],table8[3], table8[4], table8[5],table8[6], table8[7]))
+    print("  ╚═══╩═══╩═══╩═══╩═══╩═══╩═══╩═══╝")
 
 
 def placement(): #  placement of the ships
@@ -49,7 +74,7 @@ def check_sink():
 
     
 def main():
-    pass
+    print_board()
 
 
 if __name__ == '__main__':
