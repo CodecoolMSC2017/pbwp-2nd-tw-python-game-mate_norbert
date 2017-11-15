@@ -124,24 +124,20 @@ def place_ship(board,ship,s,ori,x,y):
 
 def placement_player_one(board, ships): # ship placement
     for ship in ships.keys():
-    
-        valid = False
-        while(not valid):
-            board = []
-            for i in range(8):
-                board_row = []
-                for j in range(8):
-                    board_row.append(' ')
-                board.append(board_row)
-            print_board(board)
-            print("Place a/an " + ship)
-            x,y = get_coor()
-            orientation = v_or_h()
-        board = place_ship(board, ships[ship], ori, x, y)
-        return board
+        board = []
+        for i in range(8):
+            board_row = []
+            for j in range(8):
+                board_row.append(' ')
+            board.append(board_row)
+        print_board(board)
+        print("Place a/an " + ship)
+        x,y = get_coor()
+        ori = v_or_h()
+    board = place_ship(board, ships[ship], ori, x, y)
+    return board
 
 def place_ship(board, ship, ori, x, y):
-    
     for i in range(ship):
         if ori is 'v':
             board[x+i][y] = '3'
