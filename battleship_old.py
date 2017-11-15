@@ -53,9 +53,9 @@ def get_coor():
 			coor[0] = int(coor[0])-1
 			coor[1] = int(coor[1])-1
 
-			#check that values of integers are between 1 and 10 for both coordinates
+			#check that values of integers are between 1 and 8 for both coordinates
 			if coor[0] > 7 or coor[0] < 0 or coor[1] > 7 or coor[1] < 0:
-				raise Exception("Invalid entry. Please use values between 1 to 10 only.")
+				raise Exception("Invalid entry. Please use values between 1 to 8 only.")
 
 			#if everything is ok, return coordinates
 			return coor
@@ -94,7 +94,6 @@ def placement_player_one(board, ships): # ship placement
 
 
 def place_ship(board, ship, ori, x, y):
-    
     for i in range(ship):
         if ori is 'v':
             board[x+i][y] = '3'
