@@ -90,21 +90,6 @@ def place_ship(board,ship,s,orientation,x,y):
 
     return board
 
-            print_board("u", board)
-            print("Placing a/an " + ship)
-            x, y = get_coor()
-            ori = v_or_h()
-            valid = validate(board, ships[ship], x, y, ori)
-            if not valid:
-                print("Cannot place a ship there.\nPlease take a look at the board and try again.")
-                input("Hit ENTER to continue")
-
-        board = place_ship(board, ships[ship], ship[0], ori, x, y)
-        print_board("u", board)
-
-    input("Done placing ships. Hit ENTER to continue")
-    return board
-
 
 def v_or_h(): #  vertical or horizontal placement
 	while True:
@@ -147,7 +132,7 @@ def get_coor(): #  ask for coordinates
             
             #check that values are between 1 and 8 for both coordinates
             if coor[0] > 7 or coor[0] < 0 or coor[1] > 7 or coor[1] < 0:
-                raise Exception("Invalid entry. Please use values between 1 to 10 only.")
+                raise Exception("Invalid entry. Please use values between 1 to 8 only.")
                 
             #if everything is ok, return coordinates
             return coor
@@ -164,7 +149,7 @@ def check_sink():
 def main():
 
     #types of ships
-    ships = {"Destroyer":3,"Patrol Boat":2}
+    ships = {"Destroyer":3,"Cruiser":2}
     
     board = [
             [" ", " ", " ", " ", " ", " ", " ", " "],
