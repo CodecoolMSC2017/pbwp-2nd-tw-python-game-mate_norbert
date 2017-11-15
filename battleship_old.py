@@ -82,9 +82,9 @@ def get_coor():
 			coor[0] = int(coor[0])-1
 			coor[1] = int(coor[1])-1
 
-			#check that values of integers are between 1 and 10 for both coordinates
+			#check that values of integers are between 1 and 8 for both coordinates
 			if coor[0] > 7 or coor[0] < 0 or coor[1] > 7 or coor[1] < 0:
-				raise Exception("Invalid entry. Please use values between 1 to 10 only.")
+				raise Exception("Invalid entry. Please use values between 1 to 8 only.")
 
 			#if everything is ok, return coordinates
 			return coor
@@ -111,7 +111,7 @@ def validate(board, ship, x, y, ori):
 
     return True
 
-'''def place_ship(board,ship,s,ori,x,y):
+def place_ship(board,ship,s,ori,x,y):
     
 	#place ship based on orientation
 	if ori == "v":
@@ -122,7 +122,7 @@ def validate(board, ship, x, y, ori):
 			board[x][y+i] = s
 
 	return board
-'''
+
 def placement_player_one(board, ships): # ship placement
     for ship in ships.keys():
     
@@ -137,7 +137,7 @@ def placement_player_one(board, ships): # ship placement
             print_board(board)
             print("Place a/an " + ship)
             x,y = get_coor()
-            orientation= v_or_h()
+            orientation = v_or_h()
         board = place_ship(board, ships[ship], ori, x, y)
 
     return board
@@ -145,7 +145,7 @@ def placement_player_one(board, ships): # ship placement
 def place_ship(board, ship, ori, x, y):
     
     for i in range(ship):
-        if orientation is 'v':
+        if ori is 'v':
             board[x+i][y] = '3'
         else:
             board[x][y+i] = '3' 
