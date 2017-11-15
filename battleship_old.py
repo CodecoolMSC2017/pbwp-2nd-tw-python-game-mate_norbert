@@ -106,23 +106,23 @@ def get_coor():
         coor = mix.split(",")
         coor[0] = int(coor[0])-1
         coor[1] = int(coor[1])-1
-    
+        
         return coor
 
 
-def validate(board, ship, x, y, ori):
+def validate(board, ships, ship, ori, x, y):
     # validate the ship can be placed at given coordinates
-    if ori == "v" and x + ship > 7:
+    if ori == "v" and x + ships.get(ship) > 7:
         return False
-    elif ori == "h" and y + ship > 7:
+    elif ori == "h" and y + ships.get(ship) > 7:
         return False
     else:
         if ori == "v":
-            for i in range(ship):
+            for i in range(ships.get(ship)):
                 if board[x + i][y] != ' ':
                     return False
         elif ori == "h":
-            for i in range(ship):
+            for i in range(ships.get(ship)):
                 if board[x][y + i] != ' ':
                     return False
 
@@ -138,8 +138,12 @@ def placement(board, ships): # ship placement
             print("Place a ", ship)
             x,y = get_coor()
             ori= v_or_h()
-            valid = validate(board, ship, ori, x, y)
-            board = place_ship(board, ships[ship], ori, x, y)
+            valid = validate(board,ships, ship, ori, x, y)
+            if valid == True:
+                board = place_ship(board, ships[ship], ori, x, y)
+            else:
+                print("Your ship is out of the ocean, try again")
+                continue
             cls()
     return board
 
