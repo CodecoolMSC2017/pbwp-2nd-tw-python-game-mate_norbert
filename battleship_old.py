@@ -5,9 +5,32 @@ def cls():
     	os.system('cls' if os.name=='nt' else 'clear')
 cls()
 
+def menu():
+    print('============MENU===============')
+    print("Start""\n""Exit")
+    print('===============================')
+    option = input("Press 's' to start and 'x' to exit ")
+    if option == "s":
+        print()
+        number_players = int(input("How many players will be?"))
+        players = []
+        i = 0
+        while i < number_players:
+            player_name = input("What's your name?")
+            players.append(player_name)
+            i += 1
+    elif option == "x":
+        exit()      
+
+
 def print_board(table):
     board = table
-    print(board)
+    print("   ╔════════════════════════════╗ ")
+    print("   ║ Battleship has a size of 5 ║ ")
+    print("   ║ Destroyer has a size of 4  ║ ")
+    print("   ║ Submarine has a size of 3  ║ ")
+    print("   ╚════════════════════════════╝ ")
+
     print("    1   2   3   4   5   6   7   8")
     print("  ╔═══╦═══╦═══╦═══╦═══╦═══╦═══╦═══╗")
     print("A ║ %s ║ %s ║ %s ║ %s ║ %s ║ %s ║ %s ║ %s ║" % (board[0][0], board[0][1], board[0][2], board[0][3], board[0][4], board[0][5], board[0][6], board[0][7]))
@@ -83,7 +106,7 @@ def validate(board, ship, x, y, ori):
     return True
 
 
-def placement_player_one(board, ships): # ship placement
+def placement(board, ships): # ship placement
     print_board(board)
     for ship in ships.keys():
         print("Place a ", ship)
@@ -100,38 +123,8 @@ def place_ship(board, ship, ori, x, y):
         else:
             board[x][y+i] = '3' 
     return board     
-    
-def player_two(): # ship placement
-    print('===========================')
-    print(player_2 + ', place your ships\n')
-    board = []
-    for i in range(8):
-        board_row = []
-        for j in range(8):
-            board_row.append(' ')
-        board.append(board_row)
-    print('===========================')
-    print(player_1 + ', place your ships\n')
-    add=input('Place your size 3 ship first (x,y): ')
-    orientation=input('Set orientation (h, v): ')
-    
-    # converts coordinates to list indexes
-    parts=add.split(',')
-    x = int(parts[0])
-    y = int(parts[1])
-    row = x - 1
-    coloumn = y - 1
-   
-    # marking ships on the board with 2 and 3 to mark their size so
-    # later we can calculate which ship is sunk
-    for i in range(3):
-        if orientation is 'v':
-            board[row+i][coloumn] = '3'
-        else:
-            board[row][coloumn+i] = '3'
-    
-    return board
-    
+
+
 print("")
 print("     Let's play Battleship!\n")
 print("You have to place two ships on the board ")
@@ -144,17 +137,17 @@ print('===========================')
 player_1 = input("Player One enter your name: ")
 player_2 = input("Player Two enter your name: ")
 
-# player draw
-print('===========================\n')
-for i in range(1,2):
-    sorszam = (random.randrange(2) + 1)
-    if sorszam == 1:
-        print(player_1 + ' will start the game!')
-    else:
-        temp=player_1
-        player_1=player_2
-        player_2=temp
-        print(player_1+' will start the game!')
+def draw():# player draw
+    print('===========================\n')
+    for i in range(1,2):
+        sorszam = (random.randrange(2) + 1)
+        if sorszam == 1:
+            print(player_1 + ' will start the game!')
+        else:
+            temp=player_1
+            player_1=player_2
+            player_2=temp
+            print(player_1+' will start the game!')
 
 
 def main():
@@ -173,7 +166,7 @@ def main():
         
         print ('======================')
         print("It's your turn "+player_1)
-        board = placement_player_one(board, ships)
+        board = placement(board, ships)
         print_board(board)
         break
 
