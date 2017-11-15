@@ -35,7 +35,7 @@ def menu(players):
         number_players = number()
         i = 0
         while i < number_players:
-            player_name = input("What's your name? ")
+            player_name = input("                       What's your name? ")
             players.append(player_name)
             i += 1
     elif option == "x":
@@ -44,16 +44,16 @@ def menu(players):
     return players       
 
 def number():
-    n = int(input("How many players will be? "))
+    n = int(input("                       How many players will be? "))
     return n
 
 def print_board(table):
     board = table
-    print("         ╔════════════════════════════╗ ")
-    print("         ║ Battleship has a size of 5 ║ ")
-    print("         ║ Destroyer has a size of 4  ║ ")
-    print("         ║ Submarine has a size of 3  ║ ")
-    print("         ╚════════════════════════════╝ ")
+    print("      ╔══════════════════════════════════╗ ")
+    print("      ║ Battleship has a size of 5 tiles ║ ")
+    print("      ║ Destroyer has a size of 4 tiles  ║ ")
+    print("      ║ Submarine has a size of 3 tiles  ║ ")
+    print("      ╚══════════════════════════════════╝ ")
 
     print("          1   2   3   4   5   6   7   8")
     print("        ╔═══╦═══╦═══╦═══╦═══╦═══╦═══╦═══╗")
