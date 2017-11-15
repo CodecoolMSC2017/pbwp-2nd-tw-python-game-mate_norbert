@@ -27,35 +27,6 @@ def print_board(table):
     print("H ║ %s ║ %s ║ %s ║ %s ║ %s ║ %s ║ %s ║ %s ║" % (board[7][0], board[7][1], board[7][2], board[7][3], board[7][4], board[7][5], board[7][6], board[7][7]))
     print("  ╚═══╩═══╩═══╩═══╩═══╩═══╩═══╩═══╝")
 
-boardplacement_player_one= [
-['0','0','0','0','0'],
-['0','0','0','0','0'],
-['0','0','0','0','0'],
-['0','0','0','0','0'],
-['0','0','0','0','0']
-]
-boardplacement_player_oneGuess= [
-['0','0','0','0','0'],
-['0','0','0','0','0'],
-['0','0','0','0','0'],
-['0','0','0','0','0'],
-['0','0','0','0','0']
-]
-boardplayer_two= [
-['0','0','0','0','0'],
-['0','0','0','0','0'],
-['0','0','0','0','0'],
-['0','0','0','0','0'],
-['0','0','0','0','0']
-]
-boardplayer_twoGuess= [
-['0','0','0','0','0'],
-['0','0','0','0','0'],
-['0','0','0','0','0'],
-['0','0','0','0','0'],
-['0','0','0','0','0']
-]
-
 
 def v_or_h():
     
@@ -66,6 +37,7 @@ def v_or_h():
 			return user_input
 		else:
 			print ("Invalid input. Please only enter v or h")
+
 
 def get_coor():
     	
@@ -110,35 +82,16 @@ def validate(board, ship, x, y, ori):
 
     return True
 
-'''def place_ship(board,ship,s,ori,x,y):
-    
-	#place ship based on orientation
-	if ori == "v":
-		for i in range(ship):
-			board[x+i][y] = s
-	elif ori == "h":
-		for i in range(ship):
-			board[x][y+i] = s
 
-	return board
-'''
 def placement_player_one(board, ships): # ship placement
+    print_board(board)
     for ship in ships.keys():
-    
-        valid = False
-        while(not valid):
-            board = []
-            for i in range(8):
-                board_row = []
-                for j in range(8):
-                    board_row.append(' ')
-                board.append(board_row)
-            print_board(board)
-            print("Place a/an " + ship)
-            x,y = get_coor()
-            orientation= v_or_h()
+        print("Place a ", ship)
+        x,y = get_coor()
+        ori= v_or_h()
         board = place_ship(board, ships[ship], ori, x, y)
-        return board
+    return board
+
 
 def place_ship(board, ship, ori, x, y):
     
@@ -195,14 +148,14 @@ player_2 = input("Player Two enter your name: ")
 # player draw
 print('===========================\n')
 for i in range(1,2):
-        sorszam = (random.randrange(2) + 1)
-        if sorszam == 1:
-            print(player_1 + ' will start the game!')
-        else:
-            temp=player_1
-            player_1=player_2
-            player_2=temp
-            print(player_1+' will start the game!')
+    sorszam = (random.randrange(2) + 1)
+    if sorszam == 1:
+        print(player_1 + ' will start the game!')
+    else:
+        temp=player_1
+        player_1=player_2
+        player_2=temp
+        print(player_1+' will start the game!')
 
 
 def main():
