@@ -27,28 +27,28 @@ def print_board(table):
     print("H ║ %s ║ %s ║ %s ║ %s ║ %s ║ %s ║ %s ║ %s ║" % (board[7][0], board[7][1], board[7][2], board[7][3], board[7][4], board[7][5], board[7][6], board[7][7]))
     print("  ╚═══╩═══╩═══╩═══╩═══╩═══╩═══╩═══╝")
 
-boardPlayerOne= [
+boardplacement_player_one= [
 ['0','0','0','0','0'],
 ['0','0','0','0','0'],
 ['0','0','0','0','0'],
 ['0','0','0','0','0'],
 ['0','0','0','0','0']
 ]
-boardPlayerOneGuess= [
+boardplacement_player_oneGuess= [
 ['0','0','0','0','0'],
 ['0','0','0','0','0'],
 ['0','0','0','0','0'],
 ['0','0','0','0','0'],
 ['0','0','0','0','0']
 ]
-boardPlayerTwo= [
+boardplayer_two= [
 ['0','0','0','0','0'],
 ['0','0','0','0','0'],
 ['0','0','0','0','0'],
 ['0','0','0','0','0'],
 ['0','0','0','0','0']
 ]
-boardPlayerTwoGuess= [
+boardplayer_twoGuess= [
 ['0','0','0','0','0'],
 ['0','0','0','0','0'],
 ['0','0','0','0','0'],
@@ -58,12 +58,12 @@ boardPlayerTwoGuess= [
 shipSize_3 = []
 shipSize_2 = []
 
-def playerOne(): # ship placement
+def placement_player_one(): # ship placement
     board = []
     for i in range(8):
         board_row = []
         for j in range(8):
-            board_row.append(0)
+            board_row.append(' ')
         board.append(board_row)
     print('===========================')
     print(player_1 + ', place your ships\n')
@@ -84,43 +84,42 @@ def playerOne(): # ship placement
             board[row+i][coloumn] = '3'
         else:
             board[row][coloumn+i] = '3'
-    print(board)
-
+    
     return board
     
     
     
     
-def playerTwo(): # ship placement
+def player_two(): # ship placement
     print('===========================')
     print(player_2 + ', place your ships\n')
-    add1=input('First ship (size 3) coordinates (x,y): ')
+    board = []
+    for i in range(8):
+        board_row = []
+        for j in range(8):
+            board_row.append(' ')
+        board.append(board_row)
+    print('===========================')
+    print(player_1 + ', place your ships\n')
+    add1=input('Place your size 3 ship first (x,y): ')
     orientation=input('Set orientation (h, v): ')
+    
+    # converts coordinates to list indexes
     parts=add1.split(',')
     x = int(parts[0])
     y = int(parts[1])
     row = x - 1
     coloumn = y - 1
+   
+    # marking ships on the board with 2 and 3 to mark their size so
+    # later we can calculate which ship is sunk
     for i in range(3):
         if orientation is 'v':
-            boardPlayerTwo[row+i][coloumn] = '3'
+            board[row+i][coloumn] = '3'
         else:
-            boardPlayerTwo[row][coloumn+i] = '3'
-        
-
-    add2=input('Second ship (size 2) coordinates (x,y): ')
-    orientation=input('Set orientation (h, v): ')
-    parts=add2.split(',')
-    x2 = int(parts[0])
-    y2 = int(parts[1])
-    row = x2 - 1
-    coloumn = y2 - 1
-    for c in range(2):
-        if orientation is 'v':
-            boardPlayerTwo[row+c][coloumn] = '2'
-        else:
-            boardPlayerTwo[row][coloumn+c] = '2'
-    return boardPlayerTwo
+            board[row][coloumn+i] = '3'
+    
+    return board
     
 print("")
 print("     Let's play Battleship!\n")
@@ -146,8 +145,6 @@ for i in range(1,2):
             player_2=temp
             print(player_1+' will start the game!')
 
-playerOne()
-playerTwo()
 
 # MAIN
 turn = 0
@@ -161,6 +158,7 @@ P2hitCount_Size3=0
 while True:
     print ('======================')
     print("It's your turn "+player_1)
+    board = placement_player_one()
     print_board(board)
     print ('2/', P1hitCount_Size2)
     print ('3/',  P1hitCount_Size3)
@@ -172,20 +170,20 @@ while True:
     coloumn = y - 1
     P1ship2 = '2'
     P1ship3 = '3'
-    if P1ship2 in boardPlayerTwo[row][coloumn]: # it searches for hits in the small ship first
+    if P1ship2 in boardplayer_two[row][coloumn]: # it searches for hits in the small ship first
         print ('+++++++  HIT +++++++')
-        boardPlayerOneGuess[row][coloumn] = 'X' # it stores the 'Miss' value for visualizing later
+        boardplacement_player_oneGuess[row][coloumn] = 'X' # it stores the 'Miss' value for visualizing later
         P1hitCount_Size2 +=1
-    elif boardPlayerTwo[row][coloumn] == '0':
+    elif boardplayer_two[row][coloumn] == '0':
         print ('------ MISS ------')
-        boardPlayerOneGuess[row][coloumn] = 'M'
-    elif P1ship3 in boardPlayerTwo[row][coloumn]: # it searches for hits in the big ship
+        boardplacement_player_oneGuess[row][coloumn] = 'M'
+    elif P1ship3 in boardplayer_two[row][coloumn]: # it searches for hits in the big ship
         print ('+++++++  HIT +++++++')
-        boardPlayerOneGuess[row][coloumn] = 'X'
+        boardplacement_player_oneGuess[row][coloumn] = 'X'
         P1hitCount_Size3 +=1
-    elif boardPlayerTwo[row][coloumn] == '0':
+    elif boardplayer_two[row][coloumn] == '0':
         print ('------ MISS ------')
-        boardPlayerOneGuess[row][coloumn] = 'M'
+        boardplacement_player_oneGuess[row][coloumn] = 'M'
 
     if P1hitCount_Size2 + P1hitCount_Size3 == 5:
         print ('\n+++++ ' + player_1 + ' WINS +++++')
@@ -193,7 +191,7 @@ while True:
 
     
     print("\nIt's your turn " +player_2)
-    for x in boardPlayerTwoGuess:
+    for x in boardplayer_twoGuess:
         print(*x)
     print ('2/', P2hitCount_Size2)
     print ('3/', P2hitCount_Size3)
@@ -205,20 +203,20 @@ while True:
     coloumn2 = y2 - 1
     P2ship2 = '2'
     P2ship3 = '3'
-    if P2ship2 in boardPlayerOne[row2][coloumn2]:
+    if P2ship2 in boardplacement_player_one[row2][coloumn2]:
         print ('+++++++  HIT +++++++')
-        boardPlayerTwoGuess[row2][coloumn2] = 'X'
+        boardplayer_twoGuess[row2][coloumn2] = 'X'
         P2hitCount_Size2 +=1
-    elif boardPlayerOne[row2][coloumn2] == '0':
+    elif boardplacement_player_one[row2][coloumn2] == '0':
         print ('------ MISS ------')
-        boardPlayerTwoGuess[row2][coloumn2] = 'M'
-    elif P2ship3 in boardPlayerOne[row2][coloumn2]:
+        boardplayer_twoGuess[row2][coloumn2] = 'M'
+    elif P2ship3 in boardplacement_player_one[row2][coloumn2]:
         print ('+++++++  HIT +++++++')
-        boardPlayerTwoGuess[row2][coloumn2] = 'X'
+        boardplayer_twoGuess[row2][coloumn2] = 'X'
         P2hitCount_Size3 +=1
-    elif boardPlayerOne[row2][coloumn2] == '0':
+    elif boardplacement_player_one[row2][coloumn2] == '0':
         print ('------ MISS ------')
-        boardPlayerTwoGuess[row2][coloumn2] = 'M'
+        boardplayer_twoGuess[row2][coloumn2] = 'M'
     
     if P2hitCount_Size2 + P2hitCount_Size3 == 5:
         print ('\n+++++++ ' + player_2 + ' WINS +++++++')
