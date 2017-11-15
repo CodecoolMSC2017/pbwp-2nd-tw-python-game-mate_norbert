@@ -55,12 +55,13 @@ def menu(players):
             players.append(player_name)
             i += 1
      
-    cls()      
-    return players       
+        cls()      
+        return players       
 
 def number():
-    n = int(input("                       How many players will be? "))
+    n = int(input("                            Number of players: "))
     return n
+
 
 def print_board(table):
     board = table
