@@ -2,7 +2,7 @@ import random
 import os
 
 def cls():
-    	os.system('cls' if os.name=='nt' else 'clear')
+        os.system('cls' if os.name=='nt' else 'clear')
 cls()
 
 def menu():
@@ -25,17 +25,11 @@ def menu():
 
 def print_board(table):
     board = table
-<<<<<<< HEAD
-    print("Battleship has a size of 5")
-    print("Destroyer has a size of 4")
-    print("Submarine has a size of 3")
-=======
     print("   ╔════════════════════════════╗ ")
     print("   ║ Battleship has a size of 5 ║ ")
     print("   ║ Destroyer has a size of 4  ║ ")
     print("   ║ Submarine has a size of 3  ║ ")
     print("   ╚════════════════════════════╝ ")
->>>>>>> 5ab1cd2a00536d07a7b95469b4c6b31ef96e38b7
 
     print("    1   2   3   4   5   6   7   8")
     print("  ╔═══╦═══╦═══╦═══╦═══╦═══╦═══╦═══╗")
@@ -59,45 +53,68 @@ def print_board(table):
 
 def v_or_h():
     
-	#get ship orientation from user
-	while(True):
-		user_input = input("vertical or horizontal (v,h) ? ")
-		if user_input == "v" or user_input == "h":
-			return user_input
-		else:
-			print ("Invalid input. Please only enter v or h")
+    #get ship orientation from user
+    while(True):
+        user_input = input("vertical or horizontal (v,h) ? ")
+        if user_input == "v" or user_input == "h":
+            return user_input
+        else:
+            print ("Invalid input. Please only enter v or h")
+
+
+def convert(x):
+    if x in ['a', 'A']:
+        return 1
+    elif x in ['b', 'B']:
+        return 2
+    elif x in ['c', 'C']:
+        return 3
+    elif x in ['d', 'D']:
+        return 4
+    elif x in ['e', 'E']:
+        return 5
+    elif x in ['f', 'F']:
+        return 6
+    elif x in ['g', 'G']:
+        return 7
+    elif x in ['h', 'H']:
+        return 8
 
 
 def get_coor():
-    	
-	while (True):
-		user_input = input("Please enter coordinates (row,col) ? ")
-		try:
-			
-			coor = user_input.split(",")
-			if len(coor) != 2:
-				raise Exception("Invalid entry, too few/many coordinates.");
+        
+    while (True):
+        user_input = input("Please enter coordinates (row,col) ? ")
+        coor = list(user_input)
+        
+        if len(coor) != 2:
+            print("Invalid entry, too few/many coordinates.")
+            continue
+        letter = user_input[0]
+        characters = ('a', 'A', 'b', 'B','c', 'C','d', 'D','e', 'E','f', 'F','g', 'G','h', 'H')
+        if letter not in characters:
+            print("Invalid letter")
+            continue
+        x = convert(letter)
+        y = user_input[1]
+        numbers = ('1', '2', '3', '4', '5', '6', '7', '8')
+        if y not in numbers:
+            print('Invalid value')
+            continue
+            
+        mix = str(x) + ',' + str(y)
+        coor = mix.split(",")
+        coor[0] = int(coor[0])-1
+        coor[1] = int(coor[1])-1
+    
+        return coor
 
-			
-			coor[0] = int(coor[0])-1
-			coor[1] = int(coor[1])-1
-
-			
-			if coor[0] > 7 or coor[0] < 0 or coor[1] > 7 or coor[1] < 0:
-				raise Exception("Invalid entry. Please use values between 1 to 8 only.")
-
-			
-			return coor
-		
-		except ValueError:
-			print ("Invalid entry. Please enter only numeric values for coordinates")
-		
 
 def validate(board, ship, x, y, ori):
     # validate the ship can be placed at given coordinates
-    if ori == "v" and x + ship > 8:
+    if ori == "v" and x + ship > 7:
         return False
-    elif ori == "h" and y + ship > 8:
+    elif ori == "h" and y + ship > 7:
         return False
     else:
         if ori == "v":
@@ -113,11 +130,7 @@ def validate(board, ship, x, y, ori):
 
 
 def placement(board, ships): # ship placement
-<<<<<<< HEAD
     cls()
-=======
-    print_board(board)
->>>>>>> 5ab1cd2a00536d07a7b95469b4c6b31ef96e38b7
     for ship in ships.keys():
         print_board(board)
         valid = False
@@ -138,12 +151,7 @@ def place_ship(board, ship, ori, x, y):
         else:
             board[x][y+i] = 'O' 
     return board     
-<<<<<<< HEAD
     
-=======
-
-
->>>>>>> 5ab1cd2a00536d07a7b95469b4c6b31ef96e38b7
 print("")
 print("     Let's play Battleship!\n")
 print("You have to place two ships on the board ")
@@ -157,11 +165,7 @@ player_1 = input("Player One enter your name: ")
 player_2 = input("Player Two enter your name: ")
 cls()
 
-<<<<<<< HEAD
 def draw():
-=======
-def draw():# player draw
->>>>>>> 5ab1cd2a00536d07a7b95469b4c6b31ef96e38b7
     print('===========================\n')
     for i in range(1,2):
         sorszam = (random.randrange(2) + 1)
@@ -195,4 +199,4 @@ def main():
         break
 
 if __name__=="__main__":
-    	main()
+        main()
