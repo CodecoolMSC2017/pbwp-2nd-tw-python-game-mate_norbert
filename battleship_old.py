@@ -7,7 +7,10 @@ cls()
 
 def print_board(table):
     board = table
-    print(board)
+    print("Battleship has a size of 5")
+    print("Destroyer has a size of 4")
+    print("Submarine has a size of 3")
+
     print("    1   2   3   4   5   6   7   8")
     print("  ╔═══╦═══╦═══╦═══╦═══╦═══╦═══╦═══╗")
     print("A ║ %s ║ %s ║ %s ║ %s ║ %s ║ %s ║ %s ║ %s ║" % (board[0][0], board[0][1], board[0][2], board[0][3], board[0][4], board[0][5], board[0][6], board[0][7]))
@@ -44,20 +47,20 @@ def get_coor():
 	while (True):
 		user_input = input("Please enter coordinates (row,col) ? ")
 		try:
-			#see that user entered 2 values seprated by comma
+			
 			coor = user_input.split(",")
 			if len(coor) != 2:
 				raise Exception("Invalid entry, too few/many coordinates.");
 
-			#check that 2 values are integers
+			
 			coor[0] = int(coor[0])-1
 			coor[1] = int(coor[1])-1
 
-			#check that values of integers are between 1 and 8 for both coordinates
+			
 			if coor[0] > 7 or coor[0] < 0 or coor[1] > 7 or coor[1] < 0:
 				raise Exception("Invalid entry. Please use values between 1 to 8 only.")
 
-			#if everything is ok, return coordinates
+			
 			return coor
 		
 		except ValueError:
@@ -83,54 +86,28 @@ def validate(board, ship, x, y, ori):
     return True
 
 
-def placement_player_one(board, ships): # ship placement
-    print_board(board)
+def placement(board, ships): # ship placement
+    cls()
     for ship in ships.keys():
-        print("Place a ", ship)
-        x,y = get_coor()
-        ori= v_or_h()
-        board = place_ship(board, ships[ship], ori, x, y)
+        print_board(board)
+        valid = False
+        while(not valid):
+            print("Place a ", ship)
+            x,y = get_coor()
+            ori= v_or_h()
+            valid = validate(board, ship, ori, x, y)
+            board = place_ship(board, ships[ship], ori, x, y)
+            cls()
     return board
 
 
 def place_ship(board, ship, ori, x, y):
     for i in range(ship):
         if ori is 'v':
-            board[x+i][y] = '3'
+            board[x+i][y] = 'O'
         else:
-            board[x][y+i] = '3' 
+            board[x][y+i] = 'O' 
     return board     
-    
-def player_two(): # ship placement
-    print('===========================')
-    print(player_2 + ', place your ships\n')
-    board = []
-    for i in range(8):
-        board_row = []
-        for j in range(8):
-            board_row.append(' ')
-        board.append(board_row)
-    print('===========================')
-    print(player_1 + ', place your ships\n')
-    add=input('Place your size 3 ship first (x,y): ')
-    orientation=input('Set orientation (h, v): ')
-    
-    # converts coordinates to list indexes
-    parts=add.split(',')
-    x = int(parts[0])
-    y = int(parts[1])
-    row = x - 1
-    coloumn = y - 1
-   
-    # marking ships on the board with 2 and 3 to mark their size so
-    # later we can calculate which ship is sunk
-    for i in range(3):
-        if orientation is 'v':
-            board[row+i][coloumn] = '3'
-        else:
-            board[row][coloumn+i] = '3'
-    
-    return board
     
 print("")
 print("     Let's play Battleship!\n")
@@ -143,18 +120,19 @@ print('Miss marker: M\n')
 print('===========================')
 player_1 = input("Player One enter your name: ")
 player_2 = input("Player Two enter your name: ")
+cls()
 
-# player draw
-print('===========================\n')
-for i in range(1,2):
-    sorszam = (random.randrange(2) + 1)
-    if sorszam == 1:
-        print(player_1 + ' will start the game!')
-    else:
-        temp=player_1
-        player_1=player_2
-        player_2=temp
-        print(player_1+' will start the game!')
+def draw():
+    print('===========================\n')
+    for i in range(1,2):
+        sorszam = (random.randrange(2) + 1)
+        if sorszam == 1:
+            print(player_1 + ' will start the game!')
+        else:
+            temp=player_1
+            player_1=player_2
+            player_2=temp
+            print(player_1+' will start the game!')
 
 
 def main():
@@ -173,7 +151,7 @@ def main():
         
         print ('======================')
         print("It's your turn "+player_1)
-        board = placement_player_one(board, ships)
+        board = placement(board, ships)
         print_board(board)
         break
 
