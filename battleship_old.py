@@ -7,6 +7,18 @@ def cls():
         os.system('cls' if os.name=='nt' else 'clear')
 cls()
 
+
+def getchar():
+    import sys, tty, termios
+    fd = sys.stdin.fileno()
+    old_settings = termios.tcgetattr(fd)
+    try:
+        tty.setraw(sys.stdin.fileno())
+        return sys.stdin.read(1)
+    finally:
+        termios.tcsetattr(fd, termios.TCSADRAIN, old_settings)
+
+
 def menu(players):
     print("                      ╔════════════════════════════╗ ")
     print("                      ║  Let's play Battleship!    ║ ")
@@ -29,8 +41,12 @@ def menu(players):
     print("                                (s)Start              ")
     print("                                (x)Exit               ")
     print('                      ===============================')
-    option = input("                    Press 's' to start and 'x' to exit ")
-    if option == "s":
+    print("                    Press any key to start and 'x' to exit ")
+    while True:
+        c = getchar()
+        if c == 'x':
+            break
+    
         print()
         number_players = number()
         i = 0
@@ -38,8 +54,7 @@ def menu(players):
             player_name = input("                       What's your name? ")
             players.append(player_name)
             i += 1
-    elif option == "x":
-        exit() 
+     
     cls()      
     return players       
 
@@ -87,11 +102,11 @@ def v_or_h():
     
     #get ship orientation from user
     while(True):
-        user_input = input("          Vertical or horizontal placement (v,h) ? ")
+        user_input = input("     Vertical or horizontal placement (v,h) ? ")
         if user_input == "v" or user_input == "h":
             return user_input
         else:
-            print ("         Invalid input. Please only enter v or h")
+            print ("    Invalid input. Please only enter v or h")
 
 
 def convert(x):
@@ -116,11 +131,11 @@ def convert(x):
 def get_coor():
         
     while (True):
-        user_input = input("          Please enter coordinates (row,col) ? ")
+        user_input = input("     Please enter coordinates (row,col) ? ")
         coor = list(user_input)
         
         if len(coor) != 2:
-            print("          Invalid entry, too few/many coordinates.")
+            print("     Invalid entry, too few/many coordinates.")
             continue
         letter = user_input[0]
         characters = ('a', 'A', 'b', 'B','c', 'C','d', 'D','e', 'E','f', 'F','g', 'G','h', 'H')
@@ -144,9 +159,9 @@ def get_coor():
 
 def validate(board, ships, ship, ori, x, y):
     # validate the ship can be placed at given coordinates
-    if ori == "v" and x + ships.get(ship) > 7:
+    if ori == "v" and x + ships.get(ship) > 8:
         return False
-    elif ori == "h" and y + ships.get(ship) > 7:
+    elif ori == "h" and y + ships.get(ship) > 8:
         return False
     else:
         if ori == "v":
