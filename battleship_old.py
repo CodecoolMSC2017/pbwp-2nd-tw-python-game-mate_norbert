@@ -5,11 +5,37 @@ def cls():
     	os.system('cls' if os.name=='nt' else 'clear')
 cls()
 
+def menu():
+    print('============MENU===============')
+    print("Start""\n""Exit")
+    print('===============================')
+    option = input("Press 's' to start and 'x' to exit ")
+    if option == "s":
+        print()
+        number_players = int(input("How many players will be?"))
+        players = []
+        i = 0
+        while i < number_players:
+            player_name = input("What's your name?")
+            players.append(player_name)
+            i += 1
+    elif option == "x":
+        exit()      
+
+
 def print_board(table):
     board = table
+<<<<<<< HEAD
     print("Battleship has a size of 5")
     print("Destroyer has a size of 4")
     print("Submarine has a size of 3")
+=======
+    print("   ╔════════════════════════════╗ ")
+    print("   ║ Battleship has a size of 5 ║ ")
+    print("   ║ Destroyer has a size of 4  ║ ")
+    print("   ║ Submarine has a size of 3  ║ ")
+    print("   ╚════════════════════════════╝ ")
+>>>>>>> 5ab1cd2a00536d07a7b95469b4c6b31ef96e38b7
 
     print("    1   2   3   4   5   6   7   8")
     print("  ╔═══╦═══╦═══╦═══╦═══╦═══╦═══╦═══╗")
@@ -87,7 +113,11 @@ def validate(board, ship, x, y, ori):
 
 
 def placement(board, ships): # ship placement
+<<<<<<< HEAD
     cls()
+=======
+    print_board(board)
+>>>>>>> 5ab1cd2a00536d07a7b95469b4c6b31ef96e38b7
     for ship in ships.keys():
         print_board(board)
         valid = False
@@ -108,7 +138,12 @@ def place_ship(board, ship, ori, x, y):
         else:
             board[x][y+i] = 'O' 
     return board     
+<<<<<<< HEAD
     
+=======
+
+
+>>>>>>> 5ab1cd2a00536d07a7b95469b4c6b31ef96e38b7
 print("")
 print("     Let's play Battleship!\n")
 print("You have to place two ships on the board ")
@@ -122,7 +157,11 @@ player_1 = input("Player One enter your name: ")
 player_2 = input("Player Two enter your name: ")
 cls()
 
+<<<<<<< HEAD
 def draw():
+=======
+def draw():# player draw
+>>>>>>> 5ab1cd2a00536d07a7b95469b4c6b31ef96e38b7
     print('===========================\n')
     for i in range(1,2):
         sorszam = (random.randrange(2) + 1)
