@@ -1,8 +1,9 @@
-import random, os
+import random
+import os
 import copy
 
 def cls():
-    os.system('cls' if os.name=='nt' else 'clear')
+	os.system('cls' if os.name=='nt' else 'clear')
 cls()
 
 board = [
@@ -100,15 +101,29 @@ def place_ship(board,ship,s,orientation,x,y):
 
     return board
 
+            print_board("u", board)
+            print("Placing a/an " + ship)
+            x, y = get_coor()
+            ori = v_or_h()
+            valid = validate(board, ships[ship], x, y, ori)
+            if not valid:
+                print("Cannot place a ship there.\nPlease take a look at the board and try again.")
+                input("Hit ENTER to continue")
+
+        board = place_ship(board, ships[ship], ship[0], ori, x, y)
+        print_board("u", board)
+
+    input("Done placing ships. Hit ENTER to continue")
+    return board
+
 
 def v_or_h(): #  vertical or horizontal placement
-    while(True):
-        user_input = input("vertical or horizontal (v,h) ? ")
-        if user_input == "v" or user_input == "h":
-            return user_input
-        else:
-            print("Invalid input. Please only enter v or h")
-
+	while True:
+		user_input = input("vertical or horizontal (v,h) ? ")
+		if user_input == "v" or user_input == "h":
+			return user_input
+		else:
+			print("Invalid input. Please only enter v or h")
 
 
 def validate(board,ship,x,y,orientation): #  validate user ship placement( out of board, overplacement )
@@ -154,9 +169,9 @@ def get_coor(): #  ask for coordinates
 
 
 def check_sink():
-    pass
+	pass
 
-    
+
 def main():
 
     #types of ships
@@ -186,4 +201,4 @@ def main():
     placement()
 
 if __name__ == '__main__':
-    main()
+	main()
