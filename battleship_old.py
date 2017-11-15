@@ -8,16 +8,17 @@ def cls():
 cls()
 
 def menu(players):
-    print(" ╔════════════════════════════╗ ")
-    print(" ║  Let's play Battleship!    ║ ")
-    print(" ╚════════════════════════════╝ ")
-    print('===============================')
-    print('Hit marker: X')
-    print('Miss marker: M\n')
-    print('============MENU===============')
-    print("Start""\n""Exit")
-    print('===============================')
-    option = input("Press 's' to start and 'x' to exit ")
+    print("         ╔════════════════════════════╗ ")
+    print("         ║  Let's play Battleship!    ║ ")
+    print("         ╚════════════════════════════╝ ")
+    print('         ===============================')
+    print('                 Hit marker: X          ')
+    print('                Miss marker: M\n        ')
+    print('         ============MENU===============')
+    print("                     Start              ")
+    print("                     Exit               ")
+    print('         ===============================')
+    option = input("       Press 's' to start and 'x' to exit ")
     if option == "s":
         print()
         number_players = number()
@@ -176,9 +177,11 @@ def place_ship(board, ship, ori, x, y):
             board[x][y+i] = 'O' 
     return board     
 
+
 def which_player(players):
     for player in players:
         return player
+
 
 def draw():
     print('===========================\n')
@@ -193,7 +196,7 @@ def draw():
             print(player_1+' will start the game!')
 
 
-def main(players, n):
+def main(players):
     ships = {"Battleship": 5, "Destroyer": 4, "Submarine": 3}
     board = []
     for i in range(8):
@@ -202,19 +205,13 @@ def main(players, n):
             board_row.append(' ')
         board.append(board_row)
     
-    
+    n = len(players)
     while True:
         menu(players)
-<<<<<<< HEAD
-        i = 0
-        while i < n:
-            placement(board, ships, players)
-=======
         placement(board, ships, players)
->>>>>>> e1bfdb2cd1c9ef1a75944eceba4352046f7e33e4
         
         break
     
 
 if __name__=="__main__":
-    	main(players, n)
+    	main(players)
