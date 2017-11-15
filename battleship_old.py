@@ -165,7 +165,8 @@ def place_ship(board, ship, ori, x, y):
         else:
             board[x][y+i] = 'O' 
     return board     
-    
+
+'''
 print("")
 print("     Let's play Battleship!\n")
 print("You have to place two ships on the board ")
@@ -177,7 +178,7 @@ print('Miss marker: M\n')
 print('===========================')
 player_1 = input("Player One enter your name: ")
 player_2 = input("Player Two enter your name: ")
-cls()
+cls()'''
 
 def which_player(players):
     for player in players:
