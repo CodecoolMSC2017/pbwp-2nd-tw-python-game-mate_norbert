@@ -87,11 +87,11 @@ def v_or_h():
     
     #get ship orientation from user
     while(True):
-        user_input = input("vertical or horizontal (v,h) ? ")
+        user_input = input("          Vertical or horizontal placement (v,h) ? ")
         if user_input == "v" or user_input == "h":
             return user_input
         else:
-            print ("Invalid input. Please only enter v or h")
+            print ("         Invalid input. Please only enter v or h")
 
 
 def convert(x):
@@ -116,22 +116,22 @@ def convert(x):
 def get_coor():
         
     while (True):
-        user_input = input("Please enter coordinates (row,col) ? ")
+        user_input = input("          Please enter coordinates (row,col) ? ")
         coor = list(user_input)
         
         if len(coor) != 2:
-            print("Invalid entry, too few/many coordinates.")
+            print("          Invalid entry, too few/many coordinates.")
             continue
         letter = user_input[0]
         characters = ('a', 'A', 'b', 'B','c', 'C','d', 'D','e', 'E','f', 'F','g', 'G','h', 'H')
         if letter not in characters:
-            print("Invalid letter")
+            print("          Invalid letter")
             continue
         x = convert(letter)
         y = user_input[1]
         numbers = ('1', '2', '3', '4', '5', '6', '7', '8')
         if y not in numbers:
-            print('Invalid value')
+            print('          Invalid value')
             continue
             
         mix = str(x) + ',' + str(y)
@@ -167,14 +167,14 @@ def placement(board, ships, players): # ship placement
         print_board(board)
         valid = False
         while(not valid):
-            print(str(which_player(players)) + " place a ", ship)
+            print("          " + str(which_player(players)) + " place a ", ship)
             x,y = get_coor()
             ori= v_or_h()
             valid = validate(board,ships, ship, ori, x, y)
             if valid == True:
                 board = place_ship(board, ships[ship], ori, x, y)
             else:
-                print("Invalid placement, try again")
+                print("          Invalid placement, try again")
                 continue
             cls()
     return board
