@@ -160,7 +160,7 @@ def placement(board, ships, players): # ship placement
             if valid == True:
                 board = place_ship(board, ships[ship], ori, x, y)
             else:
-                print("Your ship is out of the ocean, try again")
+                print("Invalid placement, try again")
                 continue
             cls()
     return board
@@ -219,7 +219,7 @@ def main(players):
     while True:
         
         menu(players)
-        board = placement(board, ships, players)
+        placement(board, ships, players)
         
         break
     
