@@ -41,7 +41,7 @@ def print_board(table):
     print("   ║ Submarine has a size of 3  ║ ")
     print("   ╚════════════════════════════╝ ")
 
-    print("    1   2   3   4   5   6   7   8")
+    print("     1   2   3   4   5   6   7   8")
     print("   ╔═══╦═══╦═══╦═══╦═══╦═══╦═══╦═══╗")
     print(" A ║ %s ║ %s ║ %s ║ %s ║ %s ║ %s ║ %s ║ %s ║" % (board[0][0], board[0][1], board[0][2], board[0][3], board[0][4], board[0][5], board[0][6], board[0][7]))
     print("   ╠═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╣")
@@ -139,7 +139,7 @@ def validate(board, ships, ship, ori, x, y):
     return True
 
 
-def placement(board, ships): # ship placement
+def placement(board, ships, players): # ship placement
     cls()
     for ship in ships.keys():
         print_board(board)
@@ -165,20 +165,6 @@ def place_ship(board, ship, ori, x, y):
         else:
             board[x][y+i] = 'O' 
     return board     
-
-'''
-print("")
-print("     Let's play Battleship!\n")
-print("You have to place two ships on the board ")
-print("one with size 3 and one with size 2")
-print('Hit marker: X')
-print('Miss marker: M\n')
-
-
-print('===========================')
-player_1 = input("Player One enter your name: ")
-player_2 = input("Player Two enter your name: ")
-cls()'''
 
 def which_player(players):
     for player in players:
