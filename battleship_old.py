@@ -75,10 +75,10 @@ def print_board(table):
     
     board = table
     print("      ╔══════════════════════════════════╗ ")
-    print("      ║ Battleship has a size of 4 tiles ║ ")
-    print("      ║ Destroyer has a size of 3 tiles  ║ ")
-    print("      ║ Cruiser has a size of 2 tiles    ║ ")
-    print("      ║ Submarine has a size of 1 tile   ║ ")
+    print("      ║ Battleship has a size of 5 tiles ║ ")
+    print("      ║ Destroyer has a size of 4 tiles  ║ ")
+    print("      ║ Cruiser has a size of 3 tiles    ║ ")
+    print("      ║ Submarine has a size of 2 tile   ║ ")
     print("      ╚══════════════════════════════════╝ ")
     print("          1   2   3   4   5   6   7   8")
     print("        ╔═══╦═══╦═══╦═══╦═══╦═══╦═══╦═══╗")
