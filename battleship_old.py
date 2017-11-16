@@ -232,14 +232,17 @@ def main(players):
         for j in range(8):
             board_row.append(' ')
         board.append(board_row)
+
+
     
     n = len(players)
     while True:
         menu(players)
-        placement(board, ships, players)
-        
+        for player in range(len(players)):
+            placement(board, ships, players[player])
+            cls()
         break
     
 
 if __name__=="__main__":
-    	main(players)
+    main(players)
