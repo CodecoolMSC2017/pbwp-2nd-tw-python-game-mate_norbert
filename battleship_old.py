@@ -135,6 +135,24 @@ def convert(x):
     elif x in ['h', 'H']:
         return 8
 
+def convert_x_to_letter(x):
+    if str(x) in ['0']:
+        return "A"
+    elif str(x) in ['1']:
+        return "B"
+    elif str(x) in ['2']:
+        return "C"
+    elif str(x) in ['3']:
+        return "D"
+    elif str(x) in ['4']:
+        return "E"
+    elif str(x) in ['5']:
+        return "F"
+    elif str(x) in ['6']:
+        return "G"
+    elif str(x) in ['7']:
+        return "H"
+
 
 def get_coor():
         
@@ -251,10 +269,10 @@ def draw(players):
             print(player_4 + ' will start the game!')        
 
 
-def fire(xy, guess_board):
-    if board[x][y] == " ":
+def fire(x, y, guess_board):
+    if guess_board[x][y] == " ":
         return "MISS"
-    elif board[x][y] == "X"  or board[x][y] == "#":
+    elif guess_board[x][y] == "X"  or guess_board[x][y] == "#":
         return "TRY AGAIN"
     else:
         return "HIT"
@@ -262,27 +280,28 @@ def fire(xy, guess_board):
 def guessing(game, player):
     hit_counter = {"Battleship": 5, "Destroyer": 4, "Cruiser": 3, "Submarine": 2}
     print(player)
-<<<<<<< HEAD
-    x,y = get_coor()
-    print(x)
-    print(y)
-    for key in game:
-        if key == player:
-            continue
-        print(game.get(player))
-        
-    
-    
-
-=======
-    xy = get_coor()
-    blackList = []
-    blackList.append(player)
-    print(blackList)
-    for key, value in game.items():
-        if key not in blackList:
-            print (value)
->>>>>>> b49656a197103bfeeee1ecf3a88f4983ea56286e
+    while True:
+        x, y = get_coor()
+        blackList = []
+        blackList.append(player)
+        print(blackList)
+        guess_board = []
+        for key, value in game.items():
+            if key not in blackList:
+                guess_board = value
+        print(guess_board)
+        result = fire(x, y, guess_board)
+        letter = convert_x_to_letter(x)
+        if result == "HIT":
+            print("Hit at " + str(letter) + str(y+1))
+            guess_board[x][y] = "X"
+        elif result == "MISS":
+            print("Sorry, " + str(letter) + str(y+1) + " is a miss.")
+            guess_board[x][y] = "*"
+        elif result == "TRY AGAIN":
+            print("Sorry, that coordinate was already hit. Please try again")
+        elif result != "TRY AGAIN":
+            return guess_board
 
 
 def main(players):
@@ -300,6 +319,7 @@ def main(players):
             for j in range(8):
                 board_row.append(' ')
             board.append(board_row)
+
         placement(board, ships, players[player])
         game.update({players[player] : board})
         count += 1    
