@@ -251,7 +251,7 @@ def draw(players):
             print(player_4 + ' will start the game!')        
 
 
-def fire(board, x, y):
+def fire(xy, guess_board):
     if board[x][y] == " ":
         return "MISS"
     elif board[x][y] == "X"  or board[x][y] == "#":
@@ -262,6 +262,7 @@ def fire(board, x, y):
 def guessing(game, player):
     hit_counter = {"Battleship": 5, "Destroyer": 4, "Cruiser": 3, "Submarine": 2}
     print(player)
+<<<<<<< HEAD
     x,y = get_coor()
     print(x)
     print(y)
@@ -273,6 +274,15 @@ def guessing(game, player):
     
     
 
+=======
+    xy = get_coor()
+    blackList = []
+    blackList.append(player)
+    print(blackList)
+    for key, value in game.items():
+        if key not in blackList:
+            print (value)
+>>>>>>> b49656a197103bfeeee1ecf3a88f4983ea56286e
 
 
 def main(players):
