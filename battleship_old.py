@@ -194,7 +194,7 @@ def placement(board, ships, players): # ship placement
             ori= v_or_h()
             valid = validate(board,ships, ship, ori, x, y)
             if valid == True:
-                board = place_ship(board, ships[ship], ori, x, y)
+                board = place_ship(board, ships, ships[ship], ori, x, y)
             else:
                 print("          Invalid placement, try again")
                 continue
@@ -202,13 +202,29 @@ def placement(board, ships, players): # ship placement
     return board
 
 
-def place_ship(board, ship, ori, x, y):
-    
+def place_ship(board, ships, ship, ori, x, y):
     for i in range(ship):
-        if ori is 'v':
-            board[x+i][y] = 'O'
-        else:
-            board[x][y+i] = 'O' 
+        type_of_ship = ship
+        if type_of_ship == '4':
+            if ori is 'v':
+                board[x+i][y] = 'B'
+            else:
+                board[x][y+i] = 'B'
+        elif type_of_ship == '3':
+            if ori is 'v':
+                board[x+i][y] = 'D'
+            else:
+                board[x][y+i] = 'D'
+        elif type_of_ship == '2':
+            if ori is 'v':
+                board[x+i][y] = 'C'
+            else:
+                board[x][y+i] = 'C'
+        elif type_of_ship == '1':
+            if ori is 'v':
+                board[x+i][y] = 'S'
+            else:
+                board[x][y+i] = 'S'
     return board     
 
 
