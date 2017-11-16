@@ -8,6 +8,7 @@ cls()
 
 
 def getchar():
+    
     import sys, tty, termios
     fd = sys.stdin.fileno()
     old_settings = termios.tcgetattr(fd)
@@ -19,6 +20,7 @@ def getchar():
 
 
 def menu(players):
+    
     print("                      ╔════════════════════════════╗ ")
     print("                      ║  Let's play Battleship!    ║ ")
     print("                      ╚════════════════════════════╝ ")
@@ -59,7 +61,8 @@ def menu(players):
         return players       
 
 
-def number():
+def number(): #  number of players
+    
     while True:
         n = input("                            Number of players: ")
         if n.isdigit():
@@ -69,6 +72,7 @@ def number():
 
 
 def print_board(table):
+    
     board = table
     print("      ╔══════════════════════════════════╗ ")
     print("      ║ Battleship has a size of 4 tiles ║ ")
@@ -104,9 +108,8 @@ def print_board(table):
     print("        ╚═══╩═══╩═══╩═══╩═══╩═══╩═══╩═══╝")
 
 
-def v_or_h():
-    
-    #get ship orientation from user
+def v_or_h(): #  get ship orientation from user
+
     while(True):
         user_input = input("     Vertical or horizontal placement (v,h) ? ")
         if user_input == "v" or user_input == "h":
@@ -115,7 +118,8 @@ def v_or_h():
             print ("    Invalid input. Please only enter v or h")
 
 
-def convert(x):
+def convert(x): #  converts letter coordinate to integer
+    
     if x in ['a', 'A']:
         return 1
     elif x in ['b', 'B']:
@@ -134,7 +138,8 @@ def convert(x):
         return 8
 
 
-def convert_x_to_letter(x):
+def convert_x_to_letter(x): #  converts x coordinate to corresponding letter
+    
     if str(x) in ['0']:
         return "A"
     elif str(x) in ['1']:
@@ -153,7 +158,7 @@ def convert_x_to_letter(x):
         return "H"
 
 
-def get_coor():
+def get_coor(): #  get coordinates from user
         
     while (True):
         user_input = input("     Please enter coordinates (row,col) ? ")
@@ -182,8 +187,8 @@ def get_coor():
         return coor
 
 
-def validate(board, ships, ship, ori, x, y):
-    # validate the ship can be placed at given coordinates
+def validate(board, ships, ship, ori, x, y): #  validate the ship can be placed at given coordinates  
+
     if ori == "v" and x + ships.get(ship) > 8:
         return False
     elif ori == "h" and y + ships.get(ship) > 8:
@@ -201,7 +206,8 @@ def validate(board, ships, ship, ori, x, y):
     return True
 
 
-def placement(board, ships, player): # ship placement
+def placement(board, ships, player): #  ship placement
+    
     cls()
     for ship in ships.keys():
         print_board(board)
@@ -220,7 +226,8 @@ def placement(board, ships, player): # ship placement
     return board
 
 
-def place_ship(board, ships, ship, ori, x, y):
+def place_ship(board, ships, ship, ori, x, y): #  draws the ships on the board
+    
     for i in range(ship):
         if ship == ships["Destroyer"]:
             if ori is 'v':
@@ -245,7 +252,8 @@ def place_ship(board, ships, ship, ori, x, y):
     return board     
 
 
-def draw(players):
+def draw(players): #  not used
+    
     player_1 = players[0]
     player_2 = players[1]
     player_3 = players[2]
@@ -264,6 +272,7 @@ def draw(players):
 
 
 def fire(x, y, other_player_board):
+    
     if other_player_board[x][y] == " ":
         return "MISS"
     elif other_player_board[x][y] == "X"  or other_player_board[x][y] == "#":
@@ -271,7 +280,9 @@ def fire(x, y, other_player_board):
     else:
         return "HIT"
 
+
 def hit_counter(board):
+    
     for i in range(8):
         for j in range(8):
             if board[i][j] != " " and board[i][j] != '*' and board[i][j] != '#':
@@ -296,7 +307,6 @@ def guessing(guess_board, other_player_board, game, player):
     elif result == "TRY AGAIN":
         print("Sorry, that coordinate was already hit. Please try again")
     return guess_board
-        
 
 
 def main():
@@ -335,8 +345,7 @@ def main():
             print_board(guess_board)
             time.sleep(3)
             cls()
-        
-    
+
 
 if __name__=="__main__":
     main()
