@@ -61,18 +61,22 @@ def menu(players):
 
 
 def number():
-    n = int(input("                            Number of players: "))
-    return n
+    while True:
+        n = input("                            Number of players: ")
+        if n.isdigit():
+            return int(n)
+        else:
+            print("Please enter a number ")
 
 
 def print_board(table):
     board = table
     print("      ╔══════════════════════════════════╗ ")
-    print("      ║ Battleship has a size of 5 tiles ║ ")
-    print("      ║ Destroyer has a size of 4 tiles  ║ ")
-    print("      ║ Submarine has a size of 3 tiles  ║ ")
+    print("      ║ Battleship has a size of 4 tiles ║ ")
+    print("      ║ Destroyer has a size of 3 tiles  ║ ")
+    print("      ║ Cruiser has a size of 2 tiles    ║ ")
+    print("      ║ Submarine has a size of 1 tile   ║ ")
     print("      ╚══════════════════════════════════╝ ")
-
     print("          1   2   3   4   5   6   7   8")
     print("        ╔═══╦═══╦═══╦═══╦═══╦═══╦═══╦═══╗")
     print("      A ║ %s ║ %s ║ %s ║ %s ║ %s ║ %s ║ %s ║ %s ║" % (board[0][0], board[0][1], 
@@ -185,7 +189,7 @@ def placement(board, ships, players): # ship placement
         print_board(board)
         valid = False
         while(not valid):
-            print("          " + str(which_player(players)) + " place a ", ship)
+            print("          " + str(which_player(players)) + " place a", ship)
             x,y = get_coor()
             ori= v_or_h()
             valid = validate(board,ships, ship, ori, x, y)
@@ -199,6 +203,7 @@ def placement(board, ships, players): # ship placement
 
 
 def place_ship(board, ship, ori, x, y):
+    
     for i in range(ship):
         if ori is 'v':
             board[x+i][y] = 'O'
@@ -226,23 +231,26 @@ def draw():
 
 
 def main(players):
-    ships = {"Battleship": 5, "Destroyer": 4, "Submarine": 3}
-    board = []
-    for i in range(8):
-        board_row = []
-        for j in range(8):
-            board_row.append(' ')
-        board.append(board_row)
-
-
+    ships = {"Battleship": 4, "Destroyer": 3, "Cruiser": 2, "Submarine": 1}
     
+
+
+    d = {}
     n = len(players)
     while True:
         menu(players)
         for player in range(len(players)):
+            board = []
+            for i in range(8):
+                board_row = []
+                for j in range(8):
+                    board_row.append(' ')
+                board.append(board_row)
             placement(board, ships, players[player])
+            d.update({players[player] : board})
+            print(d)
             cls()
-        break
+        
     
 
 if __name__=="__main__":
