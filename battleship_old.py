@@ -1,5 +1,6 @@
 import random
 import os
+import time
 
 players = []
 
@@ -262,6 +263,8 @@ def guessing(game, player):
     hit_counter = {"Battleship": 5, "Destroyer": 4, "Cruiser": 3, "Submarine": 2}
     print(player)
     x,y = get_coor()
+    print(x)
+    print(y)
     for key in game:
         if key == player:
             continue
@@ -279,6 +282,7 @@ def main(players):
 
     game = {}
     menu(players)
+    count = 0
     for player in range(len(players)):
         board = []
         for i in range(8):
@@ -288,6 +292,12 @@ def main(players):
             board.append(board_row)
         placement(board, ships, players[player])
         game.update({players[player] : board})
+        count += 1    
+        if count == 4:
+            time.sleep(4)
+        else:
+            continue
+
     while True:    
         for player in range(len(players)):
              
