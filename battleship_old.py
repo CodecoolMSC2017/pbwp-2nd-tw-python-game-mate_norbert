@@ -58,6 +58,7 @@ def menu(players):
         cls()      
         return players       
 
+
 def number():
     n = int(input("                            Number of players: "))
     return n
