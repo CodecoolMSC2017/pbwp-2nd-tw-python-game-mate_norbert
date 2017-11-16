@@ -277,31 +277,30 @@ def fire(x, y, guess_board):
     else:
         return "HIT"
 
-def guessing(game, player):
+def guessing(board, game, player):
     hit_counter = {"Battleship": 5, "Destroyer": 4, "Cruiser": 3, "Submarine": 2}
     print(player)
-    while True:
-        x, y = get_coor()
-        blackList = []
-        blackList.append(player)
-        print(blackList)
-        guess_board = []
-        for key, value in game.items():
-            if key not in blackList:
-                guess_board = value
-        print(guess_board)
-        result = fire(x, y, guess_board)
-        letter = convert_x_to_letter(x)
-        if result == "HIT":
-            print("Hit at " + str(letter) + str(y+1))
-            guess_board[x][y] = "X"
-        elif result == "MISS":
-            print("Sorry, " + str(letter) + str(y+1) + " is a miss.")
-            guess_board[x][y] = "*"
-        elif result == "TRY AGAIN":
-            print("Sorry, that coordinate was already hit. Please try again")
-        elif result != "TRY AGAIN":
-            return guess_board
+    print_board(board)       
+    blackList = []
+    blackList.append(player)
+    guess_board = []
+    for key, value in game.items():
+        if key not in blackList:
+            guess_board = value
+    
+    x, y = get_coor()
+    result = fire(x, y, guess_board)
+    letter = convert_x_to_letter(x)
+    if result == "HIT":
+        print("Hit at " + str(letter) + str(y+1))
+        guess_board[x][y] = "X"
+    elif result == "MISS":
+        print("Sorry, " + str(letter) + str(y+1) + " is a miss.")
+        guess_board[x][y] = "*"
+    elif result == "TRY AGAIN":
+        print("Sorry, that coordinate was already hit. Please try again")
+    
+        
 
 
 def main(players):
@@ -330,8 +329,7 @@ def main(players):
 
     while True:    
         for player in range(len(players)):
-             
-            guessing(game, players[player])   
+            guessing(board, game, players[player])   
             cls()
         
     
