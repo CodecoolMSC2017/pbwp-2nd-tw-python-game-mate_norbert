@@ -251,7 +251,6 @@ def main(players):
 
 
     d = {}
-    n = len(players)
     while True:
         menu(players)
         for player in range(len(players)):
