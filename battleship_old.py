@@ -232,37 +232,66 @@ def which_player(players):
         return player
 
 
-def draw():
+def draw(players):
+    player_1 = players[0]
+    player_2 = players[1]
+    player_3 = players[2]
+    player_4 = players[3]
     print('===========================\n')
-    for i in range(1,2):
-        sorszam = (random.randrange(2) + 1)
+    for i in range(4):
+        sorszam = (random.randrange(4) + 1)
         if sorszam == 1:
             print(player_1 + ' will start the game!')
-        else:
-            temp=player_1
-            player_1=player_2
-            player_2=temp
-            print(player_1+' will start the game!')
+        elif sorszam == 2:
+            print(player_2 + ' will start the game!')
+        elif sorszam == 3:
+            print(player_3 + ' will start the game!')
+        elif sorszam == 4:
+            print(player_4 + ' will start the game!')        
 
 
-def main(players):
-    ships = {"Battleship": 4, "Destroyer": 3, "Cruiser": 2, "Submarine": 1}
+def fire(board, x, y):
+    if board[x][y] == " ":
+        return "MISS"
+    elif board[x][y] == "X"  or board[x][y] == "#":
+        return "TRY AGAIN"
+    else:
+        return "HIT"
+
+def guessing(game, player):
+    hit_counter = {"Battleship": 5, "Destroyer": 4, "Cruiser": 3, "Submarine": 2}
+    print(player)
+    x,y = get_coor()
+    for key in game:
+        if key == player:
+            continue
+        print(game.get(player))
+        
+    
     
 
 
-    d = {}
-    while True:
-        menu(players)
+
+def main(players):
+    ships = {"Battleship": 5, "Destroyer": 4, "Cruiser": 3, "Submarine": 2}
+    
+
+
+    game = {}
+    menu(players)
+    for player in range(len(players)):
+        board = []
+        for i in range(8):
+            board_row = []
+            for j in range(8):
+                board_row.append(' ')
+            board.append(board_row)
+        placement(board, ships, players[player])
+        game.update({players[player] : board})
+    while True:    
         for player in range(len(players)):
-            board = []
-            for i in range(8):
-                board_row = []
-                for j in range(8):
-                    board_row.append(' ')
-                board.append(board_row)
-            placement(board, ships, players[player])
-            d.update({players[player] : board})
-            print(d)
+             
+            guessing(game, players[player])   
             cls()
         
     
