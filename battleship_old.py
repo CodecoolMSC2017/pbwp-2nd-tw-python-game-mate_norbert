@@ -2,7 +2,7 @@ import random
 import os
 import time
 
-players = []
+
 
 def cls():
         os.system('cls' if os.name=='nt' else 'clear')
@@ -204,6 +204,7 @@ def validate(board, ships, ship, ori, x, y):
 
 def placement(board, ships, players): # ship placement
     cls()
+    print(players)
     for ship in ships.keys():
         print_board(board)
         valid = False
@@ -303,11 +304,11 @@ def guessing(board, game, player):
         
 
 
-def main(players):
+def main():
     ships = {"Battleship": 5, "Destroyer": 4, "Cruiser": 3, "Submarine": 2}
     
 
-
+    players = []
     game = {}
     menu(players)
     count = 0
@@ -319,7 +320,7 @@ def main(players):
                 board_row.append(' ')
             board.append(board_row)
 
-        placement(board, ships, players[player])
+        placement(board, ships, players)
         game.update({players[player] : board})
         count += 1    
         if count == 4:
@@ -335,4 +336,4 @@ def main(players):
     
 
 if __name__=="__main__":
-    main(players)
+    main()
