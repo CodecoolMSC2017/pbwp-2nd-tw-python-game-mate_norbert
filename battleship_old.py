@@ -204,26 +204,48 @@ def placement(board, ships, players): # ship placement
 
 def place_ship(board, ships, ship, ori, x, y):
     for i in range(ship):
+<<<<<<< HEAD
+        type_of_ship = ship
+        if type_of_ship == '4':
+            if ori is 'v':
+                board[x+i][y] = 'B'
+            else:
+                board[x][y+i] = 'B'
+        elif type_of_ship == '3':
+=======
         if ship == ships["Destroyer"]:
+>>>>>>> 3492f8ab180394df5cfa7bca98bf2c314afafcbc
             if ori is 'v':
                 board[x+i][y] = 'D'
             else:
                 board[x][y+i] = 'D'
+<<<<<<< HEAD
+        elif type_of_ship == '2':
+=======
         elif ship == ships["Battleship"]:
             if ori is 'v':
                 board[x+i][y] = 'B'
             else:
                 board[x][y+i] = 'B'
         elif ship == ships["Cruiser"]:
+>>>>>>> 3492f8ab180394df5cfa7bca98bf2c314afafcbc
             if ori is 'v':
                 board[x+i][y] = 'C'
             else:
                 board[x][y+i] = 'C'
+<<<<<<< HEAD
+        elif type_of_ship == '1':
+            if ori is 'v':
+                board[x+i][y] = 'S'
+            else:
+                board[x][y+i] = 'S'
+=======
         elif ship == ships["Submarine"]:
             if ori is 'v':
                 board[x+i][y] = 'S'
             else:
                 board[x][y+i] = 'S'                 
+>>>>>>> 3492f8ab180394df5cfa7bca98bf2c314afafcbc
     return board     
 
 
