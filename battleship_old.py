@@ -2,8 +2,6 @@ import random
 import os
 import time
 
-
-
 def cls():
         os.system('cls' if os.name=='nt' else 'clear')
 cls()
@@ -135,6 +133,7 @@ def convert(x):
     elif x in ['h', 'H']:
         return 8
 
+
 def convert_x_to_letter(x):
     if str(x) in ['0']:
         return "A"
@@ -202,14 +201,13 @@ def validate(board, ships, ship, ori, x, y):
     return True
 
 
-def placement(board, ships, players): # ship placement
+def placement(board, ships, player): # ship placement
     cls()
-    print(players)
     for ship in ships.keys():
         print_board(board)
         valid = False
         while(not valid):
-            print("          " + str(which_player(players)) + " place a", ship)
+            print("          " + str(player) + " place a", ship)
             x,y = get_coor()
             ori= v_or_h()
             valid = validate(board,ships, ship, ori, x, y)
@@ -247,11 +245,6 @@ def place_ship(board, ships, ship, ori, x, y):
     return board     
 
 
-def which_player(players):
-    for player in players:
-        return player
-
-
 def draw(players):
     player_1 = players[0]
     player_2 = players[1]
@@ -270,44 +263,44 @@ def draw(players):
             print(player_4 + ' will start the game!')        
 
 
-def fire(x, y, guess_board):
-    if guess_board[x][y] == " ":
+def fire(x, y, other_player_board):
+    if other_player_board[x][y] == " ":
         return "MISS"
-    elif guess_board[x][y] == "X"  or guess_board[x][y] == "#":
+    elif other_player_board[x][y] == "X"  or other_player_board[x][y] == "#":
         return "TRY AGAIN"
     else:
         return "HIT"
 
-def guessing(board, game, player):
-    hit_counter = {"Battleship": 5, "Destroyer": 4, "Cruiser": 3, "Submarine": 2}
-    print(player)
-    print_board(board)       
-    blackList = []
-    blackList.append(player)
-    guess_board = []
-    for key, value in game.items():
-        if key not in blackList:
-            guess_board = value
+def hit_counter(board):
+    for i in range(8):
+        for j in range(8):
+            if board[i][j] != " " and board[i][j] != '*' and board[i][j] != '#':
+                return False
+    return True
+
+
+def guessing(guess_board, other_player_board, game, player):
     
     x, y = get_coor()
-    result = fire(x, y, guess_board)
+    result = fire(x, y, other_player_board)
     letter = convert_x_to_letter(x)
     if result == "HIT":
         print("Hit at " + str(letter) + str(y+1))
         guess_board[x][y] = "X"
+        if hit_counter(guess_board):
+            return "WIN"
+
     elif result == "MISS":
         print("Sorry, " + str(letter) + str(y+1) + " is a miss.")
         guess_board[x][y] = "*"
     elif result == "TRY AGAIN":
         print("Sorry, that coordinate was already hit. Please try again")
-    
+    return guess_board
         
 
 
 def main():
     ships = {"Battleship": 5, "Destroyer": 4, "Cruiser": 3, "Submarine": 2}
-    
-
     players = []
     game = {}
     menu(players)
@@ -320,17 +313,27 @@ def main():
                 board_row.append(' ')
             board.append(board_row)
 
-        placement(board, ships, players)
+        placement(board, ships, players[player])
         game.update({players[player] : board})
-        count += 1    
-        if count == 4:
-            time.sleep(4)
-        else:
-            continue
 
     while True:    
-        for player in range(len(players)):
-            guessing(board, game, players[player])   
+        for player in players:
+            print(player)
+            guess_board = []
+            for i in range(8):
+                guess_board_row = []
+                for j in range(8):
+                    guess_board_row.append(' ')
+                guess_board.append(guess_board_row)
+            blackList = []
+            blackList.append(player)
+            
+            for key, value in game.items():
+                if key not in blackList:
+                    other_player_board = value
+            guessing(guess_board, other_player_board, game, player)
+            print_board(guess_board)
+            time.sleep(3)
             cls()
         
     
