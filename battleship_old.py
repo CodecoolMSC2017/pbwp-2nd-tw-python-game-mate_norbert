@@ -33,10 +33,11 @@ def menu(players):
     print("                 { /|__|  |/\__|  |--- |||__/")
     print("                +---------------___[}-_===_.'____                 /\ ")
     print("            ____`-' ||___-{]_| _[}-  |     |_[___\==--            \/   _")
-    print(" __..._____--==/___]_|__|_____________________________[___\==--____,------' .7")
-    print("|                                                                     BB-61/")
-    print(" \_________________________________________________________________________|")
-    print("  Matthew Bace")
+    print(" __..._____--==/___]_|__|_____________________________[___\==--____,------' ...7")
+    print("|                                                                      BB-61  /")
+    print(" \                                                                           /")
+    print("  \_________________________________________________________________________|")
+    print("                                                                             ")
     print('                      =========== MENU ==============')
     print("                                (s)Start              ")
     print("                                (x)Exit               ")
@@ -232,14 +233,17 @@ def main(players):
         for j in range(8):
             board_row.append(' ')
         board.append(board_row)
+
+
     
     n = len(players)
     while True:
         menu(players)
-        placement(board, ships, players)
-        
+        for player in range(len(players)):
+            placement(board, ships, players[player])
+            cls()
         break
     
 
 if __name__=="__main__":
-    	main(players)
+    main(players)
